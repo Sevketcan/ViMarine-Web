@@ -1,0 +1,15 @@
+{
+    "Navigation": {
+        "about": "About Us",
+        "services": "Services",
+        "references": "References",
+        "blog": "Blog",
+        "contact": "Contact",
+        "getQuote": "Get a Quote"
+    },
+    "Hero": {
+        "title": "Empowering Your Marine Electrical & Electronic Systems",
+        "subtitle": "Providing reliable, efficient, and innovative solutions for ships worldwide.",
+        "learnMore": "Learn More"
+    }
+}

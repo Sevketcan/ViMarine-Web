@@ -1,0 +1,15 @@
+{
+    "Navigation": {
+        "about": "Hakkımızda",
+        "services": "Hizmetler",
+        "references": "Referanslar",
+        "blog": "Blog",
+        "contact": "İletişim",
+        "getQuote": "Teklif Al"
+    },
+    "Hero": {
+        "title": "Deniz Elektrik ve Elektronik Sistemlerinizi Güçlendiriyoruz",
+        "subtitle": "Dünya çapındaki gemiler için güvenilir, verimli ve yenilikçi çözümler sunuyoruz.",
+        "learnMore": "Daha Fazla Bilgi"
+    }
+}

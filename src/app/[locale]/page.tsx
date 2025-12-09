@@ -1,11 +1,15 @@
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import { ArrowRight, Wrench, Zap, Cpu, Radio } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { HeroCarousel } from "@/components/hero-carousel";
+import { getTranslations } from "next-intl/server";
 
-export default function Home() {
+export default async function Home() {
+  const t = await getTranslations('Hero');
+  const tNav = await getTranslations('Navigation'); // For Get a Quote if I use it
+
   const services = [
     {
       title: "Fault Detection & Repair",
@@ -48,20 +52,20 @@ export default function Home() {
 
         <div className="container mx-auto relative z-10 px-4 text-center">
           <h1 className="text-4xl md:text-6xl font-bold font-heading mb-6 animate-in fade-in slide-in-from-bottom-4 duration-1000">
-            Empowering Your Marine Electrical & Electronic Systems
+            {t('title')}
           </h1>
           <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto text-gray-200 animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-200">
-            Providing reliable, efficient, and innovative solutions for ships worldwide.
+            {t('subtitle')}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center animate-in fade-in slide-in-from-bottom-12 duration-1000 delay-400">
             <Link href="/contact">
               <Button size="lg" className="bg-marine-blue hover:bg-marine-blue/90 text-white text-lg px-8">
-                Get a Quote
+                {tNav('getQuote')}
               </Button>
             </Link>
             <Link href="/services">
               <Button size="lg" variant="outline" className="bg-transparent text-white border-white hover:bg-white/10 text-lg px-8">
-                Learn More
+                {t('learnMore')}
               </Button>
             </Link>
           </div>

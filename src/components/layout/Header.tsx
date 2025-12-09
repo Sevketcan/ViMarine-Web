@@ -1,7 +1,8 @@
 "use client";
 
 import * as React from "react";
-import Link from "next/link";
+import { Link, usePathname, useRouter } from "@/i18n/routing";
+import { useTranslations } from "next-intl";
 import { Menu, Globe, Ship } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -16,16 +17,29 @@ import {
     NavigationMenuList,
     navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 export function Header() {
+    const t = useTranslations('Navigation');
+    const router = useRouter();
+    const pathname = usePathname();
     const [isOpen, setIsOpen] = React.useState(false);
 
+    const handleLanguageChange = (locale: string) => {
+        router.replace(pathname, { locale: locale });
+    };
+
     const menuItems = [
-        { href: "/about", label: "About Us" },
-        { href: "/services", label: "Services" },
-        { href: "/references", label: "References" },
-        { href: "/blog", label: "Blog" },
-        { href: "/contact", label: "Contact" },
+        { href: "/about", label: t('about') },
+        { href: "/services", label: t('services') },
+        { href: "/references", label: t('references') },
+        { href: "/blog", label: t('blog') },
+        { href: "/contact", label: t('contact') },
     ];
 
     return (
@@ -53,13 +67,25 @@ export function Header() {
                     </NavigationMenu>
 
                     <div className="flex items-center space-x-4">
-                        <Button variant="ghost" size="icon">
-                            <Globe className="h-5 w-5" />
-                            <span className="sr-only">Language</span>
-                        </Button>
+                        <DropdownMenu>
+                            <DropdownMenuTrigger asChild>
+                                <Button variant="ghost" size="icon">
+                                    <Globe className="h-5 w-5" />
+                                    <span className="sr-only">Language</span>
+                                </Button>
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent align="end">
+                                <DropdownMenuItem onClick={() => handleLanguageChange('en')}>
+                                    English
+                                </DropdownMenuItem>
+                                <DropdownMenuItem onClick={() => handleLanguageChange('tr')}>
+                                    Türkçe
+                                </DropdownMenuItem>
+                            </DropdownMenuContent>
+                        </DropdownMenu>
                         <Link href="/contact">
                             <Button className="bg-marine-blue hover:bg-marine-blue/90 text-white">
-                                Get a Quote
+                                {t('getQuote')}
                             </Button>
                         </Link>
                     </div>
@@ -88,7 +114,7 @@ export function Header() {
                                 ))}
                                 <Link href="/contact" onClick={() => setIsOpen(false)}>
                                     <Button className="w-full bg-marine-blue hover:bg-marine-blue/90 text-white mt-4">
-                                        Get a Quote
+                                        {t('getQuote')}
                                     </Button>
                                 </Link>
                             </div>
